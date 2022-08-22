@@ -1,0 +1,25 @@
+# --------------------------------------------------------------------------- #
+# The Toeplitz Project Literature Library                                     #
+# Copyright (c) 2011-2022 Toeplitz Project contributors                       #
+#                                                                             #
+# This Source Code Form is subject to the terms of the Mozilla Public         #
+# License, v. 2.0. If a copy of the MPL was not distributed with this         #
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.                    #
+# --------------------------------------------------------------------------- #
+
+author = {
+    "birth": {
+        "day": 7, 
+        "month": 12, 
+        "year": 1823
+    }, 
+    "death": {
+        "day": 29, 
+        "month": 12, 
+        "year": 1891
+    }, 
+    "givenNames": "Leopold", 
+    "libpath": "lit.K.ronecker",
+    "portrait": "Kronecker_1865.jpg", 
+    "surname": "Kronecker"
+}

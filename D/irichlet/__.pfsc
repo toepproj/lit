@@ -1,0 +1,25 @@
+# --------------------------------------------------------------------------- #
+# The Toeplitz Project Literature Library                                     #
+# Copyright (c) 2011-2022 Toeplitz Project contributors                       #
+#                                                                             #
+# This Source Code Form is subject to the terms of the Mozilla Public         #
+# License, v. 2.0. If a copy of the MPL was not distributed with this         #
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.                    #
+# --------------------------------------------------------------------------- #
+
+author = {
+    "birth": {
+        "day": 13, 
+        "month": 2, 
+        "year": 1805
+    }, 
+    "death": {
+        "day": 5, 
+        "month": 5, 
+        "year": 1859
+    }, 
+    "givenNames": "Johann Peter Gustav Leujeune", 
+    "libpath": "lit.D.irichlet",
+    "portrait": "Dirichlet.jpg", 
+    "surname": "Dirichlet"
+}

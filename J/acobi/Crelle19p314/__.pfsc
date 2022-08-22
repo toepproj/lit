@@ -1,0 +1,25 @@
+# --------------------------------------------------------------------------- #
+# The Toeplitz Project Literature Library                                     #
+# Copyright (c) 2011-2022 Toeplitz Project contributors                       #
+#                                                                             #
+# This Source Code Form is subject to the terms of the Mozilla Public         #
+# License, v. 2.0. If a copy of the MPL was not distributed with this         #
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.                    #
+# --------------------------------------------------------------------------- #
+
+work = {
+    "MSC2010": "11A15, 11Rxx",
+    "journal": "Crelle",
+    "kind": "article",
+    "libpath": "lit.J.acobi.Crelle19p314",
+    "pages": {
+        "first": 314,
+        "last": 318
+    },
+    "source": [
+        "http://www.digizeitschriften.de/dms/img/?PID=GDZPPN002141981"
+    ],
+    "title": "Ueber die complexen Primzahlen, welche in der Theorie der Reste der 5ten, 8ten und 12ten Potenzen zu betrachten sind",
+    "volume": 19,
+    "year": 1839
+}

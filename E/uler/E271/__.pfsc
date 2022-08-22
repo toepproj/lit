@@ -1,0 +1,25 @@
+# --------------------------------------------------------------------------- #
+# The Toeplitz Project Literature Library                                     #
+# Copyright (c) 2011-2022 Toeplitz Project contributors                       #
+#                                                                             #
+# This Source Code Form is subject to the terms of the Mozilla Public         #
+# License, v. 2.0. If a copy of the MPL was not distributed with this         #
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.                    #
+# --------------------------------------------------------------------------- #
+
+work = {
+    "MSC2010": "11A07, 11A41",
+    "journal": "NoviCommAcadSciPetrop",
+    "kind": "article",
+    "libpath": "lit.E.uler.E271",
+    "pages": {
+        "first": 74,
+        "last": 104
+    },
+    "source": [
+        "http://eulerarchive.maa.org/pages/E271.html"
+    ],
+    "title": "Theoremata arithmetica nova methodo demonstrata",
+    "volume": 8,
+    "year": 1763
+}

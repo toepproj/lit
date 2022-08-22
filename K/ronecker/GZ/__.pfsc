@@ -1,0 +1,26 @@
+# --------------------------------------------------------------------------- #
+# The Toeplitz Project Literature Library                                     #
+# Copyright (c) 2011-2022 Toeplitz Project contributors                       #
+#                                                                             #
+# This Source Code Form is subject to the terms of the Mozilla Public         #
+# License, v. 2.0. If a copy of the MPL was not distributed with this         #
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.                    #
+# --------------------------------------------------------------------------- #
+
+work = {
+    "MSC2010": "11E99, 11R04",
+    "journal": "Crelle",
+    "kind": "article",
+    "libpath": "lit.K.ronecker.GZ",
+    "nickname": "The Grundzüge",
+    "pages": {
+        "first": 1,
+        "last": 122
+    },
+    "source": [
+        "http://www.digizeitschriften.de/dms/img/?PID=GDZPPN00215823X"
+    ],
+    "title": "Grundzüge einer arithmetischen Theorie der algebraischen Grössen",
+    "volume": 92,
+    "year": 1882
+}
