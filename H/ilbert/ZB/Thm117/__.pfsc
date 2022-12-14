@@ -102,7 +102,7 @@ deduc Pf of Thm.C1, Thm.C2, Thm.C3, Thm.C4 {
         en = "
         $@frac 1 - zeta over 1 - zetauug; = frac 1 - zeta sup g g'; over 1 - zetauug;$
         $@= frac 1 - qnt zetauug; sup g'; over 1 - zetauug;$
-        $@= 1 + zetauug + zetauu2g; + ccc + zeta sup (g' - 1) g;$
+        $@= 1 + zetauug + zetauu2g + ccc + zeta sup (g' - 1) g;$
         is an algebraic integer.
         "
     }
