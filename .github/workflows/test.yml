@@ -1,0 +1,89 @@
+name: test
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  test-build:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        shell: bash
+    env:
+      LIB_VOLUME: pfsc-lib
+      DEBUG_WORKFLOW: 1
+      PISE_TAG: latest
+      CONTENT_REPO: ${{github.repository}}
+    steps:
+      # -----------------------------------------
+      # Config
+      - name: Config
+        id: conf
+        run: |
+          echo "content-dir=proofscape/lib/gh/${{env.CONTENT_REPO}}" >> $GITHUB_OUTPUT
+          echo "content-libpath=gh/${{env.CONTENT_REPO}}" | sed -e "s#/#.#g" >> $GITHUB_OUTPUT
+      # Make directories
+      - name: Make directories
+        run: |
+          mkdir images
+          mkdir -p ${{steps.conf.outputs.content-dir}}
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: ${{steps.conf.outputs.content-dir}}
+          repository: ${{env.CONTENT_REPO}}
+      # TODO:
+      #  This project happens not to have any dependencies (i.e. other pfsc
+      #  content repos on which it draws). In general, there should be a step
+      #  here where we read the root level `__.pfsc` module and then checkout
+      #  all the dependencies (at the right versions) that it names.
+      # -----------------------------------------
+      # Obtain pise OCA image, preferably from cache
+      - name: Cache pise OCA
+        id: cache-pise
+        uses: actions/cache@v3
+        with:
+          path: images/pise.tar
+          key: cache-pise-${{env.PISE_TAG}}
+      - if: ${{ steps.cache-pise.outputs.cache-hit == 'true' }}
+        name: Load pise
+        run: docker load --input=images/pise.tar
+      - if: ${{ steps.cache-pise.outputs.cache-hit != 'true' }}
+        name: Pull pise
+        run: |
+          docker pull proofscape/pise:$PISE_TAG
+          docker save --output=images/pise.tar proofscape/pise:$PISE_TAG
+      # -----------------------------------------
+      # Form and populate a `lib` volume
+      - name: Form and populate lib volume
+        run: |
+          docker run --rm --entrypoint=bash \
+            -v ${{github.workspace}}/proofscape/lib:/usr/local/share/proofscape_lib:ro \
+            --mount 'type=volume,src=${{env.LIB_VOLUME}},dst=/proofscape/lib' \
+            proofscape/pise:$PISE_TAG \
+            -c "cp -r /usr/local/share/proofscape_lib/* ~/proofscape/lib"
+      # Check population of lib volume
+      - if: ${{ env.DEBUG_WORKFLOW >= 1 }}
+        name: Check population of lib volume
+        run: |
+          docker run --rm --entrypoint=bash \
+            --mount 'type=volume,src=${{env.LIB_VOLUME}},dst=/proofscape/lib' \
+            proofscape/pise:$PISE_TAG \
+            -c "cd ~/proofscape/lib; ls -l gh/${{env.CONTENT_REPO}}"
+      # -----------------------------------------
+      # Give the OCA a normal startup, so that it starts its internal Redis
+      # server. Then we will use `docker exec` to run our build command inside
+      # this container.
+      - name: Start pise
+        run: |
+          docker run --rm -d \
+            --name=pise \
+            --mount 'type=volume,src=${{env.LIB_VOLUME}},dst=/proofscape/lib' \
+            proofscape/pise:$PISE_TAG
+      # -----------------------------------------
+      # Now we build our content repo. This is our test, i.e. simply to see if
+      # we can build.
+      - name: Try building
+        run: |
+          docker exec \
+            -e FLASK_APP=pfsc \
+            -w /home/pfsc/proofscape/src/pfsc-server \
+            pise bash -c "flask pfsc build -rv ${{steps.conf.outputs.content-libpath}}"
